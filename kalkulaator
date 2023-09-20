@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kalkulaator</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Tavaline Kalkulaator</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <input type="text" id="kuvatav-vaartus" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="sisestaNumber(7)">7</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="sisestaNumber(8)">8</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="sisestaNumber(9)">9</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block" onclick="lisamine('+')">+</button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="sisestaNumber(4)">4</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="sisestaNumber(5)">5</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="sisestaNumber(6)">6</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block" onclick="lisamine('-')">-</button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="sisestaNumber(1)">1</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="sisestaNumber(2)">2</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="sisestaNumber(3)">3</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block" onclick="lisamine('*')">*</button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="sisestaNumber(0)">0</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block" onclick="lisamine('/')">/</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-success btn-block" onclick="arvuta()">=</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-danger btn-block" onclick="kustuta()">C</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        let kuvatavVaartus = "";
+
+        function sisestaNumber(number) {
+            kuvatavVaartus += number;
+            document.getElementById("kuvatav-vaartus").value = kuvatavVaartus;
+        }
+
+        function lisamine(symbol) {
+            kuvatavVaartus += symbol;
+            document.getElementById("kuvatav-vaartus").value = kuvatavVaartus;
+        }
+
+        function kustuta() {
+            kuvatavVaartus = "";
+            document.getElementById("kuvatav-vaartus").value = kuvatavVaartus;
+        }
+
+        function arvuta() {
+            try {
+                const tulemus = eval(kuvatavVaartus);
+                document.getElementById("kuvatav-vaartus").value = tulemus;
+                kuvatavVaartus = tulemus.toString();
+            } catch (error) {
+                document.getElementById("kuvatav-vaartus").value = "Viga";
+                kuvatavVaartus = "";
+            }
+        }
+    </script>
+</body>
+</html>
